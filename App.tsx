@@ -1,20 +1,19 @@
+import * as React from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import BottomBar from './src/components/BottomBar';
+import { ThemeProvider } from 'styled-components';
+import theme from './src/theme/';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+function App() {
+  return <ThemeProvider theme={theme.colors}>
+    <StatusBar backgroundColor='transparent' style='light'/>
+    <BottomBar/>
+  </ThemeProvider>
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
+declare global {
+  type Page = React.FC<NativeStackScreenProps<any>>
+}
